@@ -2,7 +2,9 @@
 """
 Contains definition of index_range helper function
 """
-from typing import Tuple
+from typing import Tuple, List
+import csv
+import math
 
 
 def index_range(page: int, page_size: int) -> Tuple[int, int]:
@@ -22,10 +24,6 @@ def index_range(page: int, page_size: int) -> Tuple[int, int]:
         end += page_size
 
     return (start, end)
-
-import csv
-import math
-from typing import List
 
 
 class Server:
