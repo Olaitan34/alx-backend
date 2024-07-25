@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 """
-Contains definition of index_range helper function
+Defines class Server that paginates a database of popular baby names
 """
-from typing import Tuple, List
 import csv
 import math
+from typing import List, Tuple
 
 
 def index_range(page: int, page_size: int) -> Tuple[int, int]:
@@ -54,13 +54,13 @@ class Server:
         Return:
             list of lists containing required data from the dataset
         """
-        assert(page) is int and page > 0
-        assert(page_size) is int and page_size > 0
+        assert type(page) is int and page > 0
+        assert type(page_size) is int and page_size > 0
 
-        datasetting = self.dataset()
-        datalenth = len(datasetting)
+        dataset = self.dataset()
+        data_length = len(dataset)
         try:
-            indexing = index_range(page, page_size)
-            return dataset[indexing[0]:indexing[1]]
+            index = index_range(page, page_size)
+            return dataset[index[0]:index[1]]
         except IndexError:
             return []
