@@ -1,25 +1,10 @@
 #!/usr/bin/env python3
-<<<<<<< HEAD
-from typing import Any, Dict, Optional
-from base_caching import BaseCaching
-
-class FIFOCache(BaseCaching):
-    """
-    Child class of BseCaching, also stores data in dictionary
-    """
-    def __init__(self):
-    """
-    instantiation of the class
-    """
-        super().__init__()
-
-=======
 """ BaseCaching module
 """
 from base_caching import BaseCaching
 
 
-class FIFOCache(BaseCaching):
+class LIFOCache(BaseCaching):
     """
     FIFOCache defines a FIFO caching system
     """
@@ -40,9 +25,11 @@ class FIFOCache(BaseCaching):
         else:
             length = len(self.cache_data)
             if length >= BaseCaching.MAX_ITEMS and key not in self.cache_data:
-                print("DISCARD: {}".format(self.order[0]))
-                del self.cache_data[self.order[0]]
-                del self.order[0]
+                print("DISCARD: {}".format(self.order[-1]))
+                del self.cache_data[self.order[-1]]
+                del self.order[-1]
+            if key in self.order:
+                del self.order[self.order.index(key)]
             self.order.append(key)
             self.cache_data[key] = item
 
@@ -53,4 +40,3 @@ class FIFOCache(BaseCaching):
         if key is not None and key in self.cache_data.keys():
             return self.cache_data[key]
         return None
->>>>>>> origin/main
